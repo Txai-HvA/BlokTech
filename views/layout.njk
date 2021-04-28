@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Txai Pereira de Lacerda">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <title>Txai Pereira de Lacerda - Project Tech</title>
+</head>
+
+<body>
+    {% include "partials/header.njk" %}
+
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    {% include "partials/nav.njk" %}
+</body>
+<script src='js/script.js'></script>
+</html>
