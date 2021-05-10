@@ -4,8 +4,8 @@ let filterDoneButton = document.querySelector('#filterDoneButton');
 
 
 function toggleFilterMenu() {
-    console.log("click click");
-    filterMenu.classList.toggle('show');
+    filterMenu.classList.toggle("showFilterMenu");
+    // filterMenu.scrollIntoView({ behavior: 'smooth' }); //
 }
 
 

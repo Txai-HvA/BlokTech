@@ -7,13 +7,20 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "nodemon server.js",
         "serve": "nodemon server.js",
-        "build": "nodemon server.js"
+        "build": "nodemon server.js",
+	"lint": "eslint .",
+    	"lint:fix": "eslint . --fix"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Txai-HvA/BlokTech.git"
     },
-    "keywords": [],
+    "keywords": [
+    	"matching-app",
+	"music",
+	"nunjucks",
+    	"mongodb"
+    ],
     "author": "Txai Pereira de Lacerda",
     "license": "ISC",
     "bugs": {
@@ -24,6 +31,13 @@
         "camelcase": "^6.2.0",
         "express": "^4.17.1",
         "nodemon": "^2.0.7",
-        "nunjucks": "^3.2.3"
+        "nunjucks": "^3.2.3",
+	"eslint-config-prettier": "^8.3.0",
+        "prettier": "^2.3.0"
+    },
+    "devDependencies": {
+        "eslint": "^7.26.0",
+        "eslint-config-airbnb-base": "^14.2.1",
+        "eslint-plugin-import": "^2.22.1"
     }
 }
