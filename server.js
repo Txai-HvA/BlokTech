@@ -9,42 +9,66 @@ nunjucks.configure("views", {
     express: app,
 });
 
+app.use(express.json()); //NEW
+app.use(express.urlencoded()); //NEW
+
+let data = {
+    users: [{
+            name: "John Doe",
+            image: "/images/john.jpg",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            genres: ["Metal", "Rock"],
+            suggested: true,
+        },
+        {
+            name: "Jan Jansen",
+            image: "/images/jan.jpg",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            genres: ["Dance-pop", "House", "Pop", "Trance"],
+            suggested: true,
+        },
+        {
+            name: "Jane Roe",
+            image: "/images/jane.jpg",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            genres: ["Reggae", "Rock"],
+            suggested: false,
+        },
+        {
+            name: "Richard Roe",
+            image: "/images/richard.jpg",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            genres: ["Dance-pop", "EDM"],
+            suggested: false,
+        },
+    ],
+};
+
+const genres = ["Dance-pop", "Rock", "Metal", "Pop", "Jazz"];
+
 app.get("/", function(req, res) {
     //Include
-    let users = {
-        suggestedUsers: [{
-                name: "John Doe",
-                image: "/images/john.jpg",
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                genres: ["Metal", "Rock"],
-            },
-            {
-                name: "Jan Jansen",
-                image: "/images/jan.jpg",
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                genres: ["Dance-pop", "House", "Pop", "Trance"],
-            },
-        ],
-        resultUsers: [{
-                name: "Jane Roe",
-                image: "/images/jane.jpg",
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                genres: ["Reggae", "Rock"],
-            },
-            {
-                name: "Richard Roe",
-                image: "/images/richard.jpg",
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                genres: ["Dance-pop", "EDM"],
-            },
-        ],
-    };
-
-    res.render("home.njk", users);
+    res.render("home.njk", data);
 });
 
-app.get("/profile", function(req, res) {
-    res.render("profile.njk");
+app.get("/editprofile", function(req, res) {
+    //Include
+    res.render("editprofile.njk", [data, genres]);
+});
+
+app.post("/editprofile", function(req, res) {
+    console.log(req.body);
+
+    let user = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        description: req.body.description,
+    };
+    data.users.push(user);
+
+    console.log(data.users);
+
+    res.render(user, { title: "Succes", genres });
 });
 
 //Middleware
@@ -63,7 +87,7 @@ app.get("/users/:userId/:slug", (req, res) => {
 });
 
 //Middleware
-app.use(function(req, res, next) {
+app.use(function(req, res) {
     res.status(404).render("404.njk");
 });
 

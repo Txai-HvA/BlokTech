@@ -3,9 +3,10 @@
   {% include "partials/filterHeader.njk" %}
   <h1>Suggested Users</h1>
     <!-- conditional -->
-    {% if suggestedUsers.length > 0 %}
+    {% if users.length > 0 %}
       <ul>
-        {% for user in suggestedUsers %}
+        {% for user in users %}
+        {% if user.suggested == true %}
           <li>
             <a href="#">
               <img src={{user.image}} alt={{user.name}}>
@@ -20,6 +21,7 @@
               </div>
             </a>
           </li>
+          {% endif %}
         {% endfor %}
       </ul>
       {% else %}
@@ -28,9 +30,9 @@
 
   <h1>Results</h1>
     <!-- conditional -->
-    {% if resultUsers.length > 0 %}
+    {% if users.length > 0 %}
       <ul>
-        {% for user in resultUsers %}
+        {% for user in users %}
           <li>
             <a href="#">
               <img src={{user.image}} alt={{user.name}}>
@@ -56,14 +58,14 @@
     <h2>Genres<h2>
     <input type="text" placeholder="Search for genres...">
     <ul>
-        <li>Rock</li>
-        <li>Dance-pop</li>
+      <li><label name="genres" value="genres">Rock<label><input type="checkbox" name="genres" value="Rock"></li>
+      <li><label name="genres" value="genres">Dance-pop<label><input type="checkbox" name="genres" value="Dance-pop"></li>
     </ul>
     <h2>Artists<h2>
     <input type="text" placeholder="Search for artists...">
     <ul>
-        <li>Rick Astley</li>
-        <li>Nickelback</li>
+      <li><label name="artists" value="Rick Astley">Rick Astley<label><input type="checkbox" name="Rick Astley" value="Rick Astley"></li>
+      <li><label name="artists" value="">Nickelback<label><input type="checkbox" name="Nickelback" value="Nickelback"></li>
     </ul>
     <button id="filterDoneButton">DONE</button>
   </div>

@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: #181818;
     font-family: "Montserrat";
     height: 100vh;
     font-size: 16px;
@@ -100,7 +100,8 @@ header button .material-icons {
 
 main {
     background-color: #181818;
-    height: 100vh;
+    /* height: 100vh; */
+    padding-bottom: 70px;
 }
 
 main h1 {
@@ -187,7 +188,7 @@ main ul li a ul {
     color: #F549A8;
     border: none;
     border-radius: 20px;
-    font-size: 0.7em;
+    font-size: 16px;
     padding: 10px;
     display: flex;
     margin: 15px auto 0 auto;
@@ -196,7 +197,7 @@ main ul li a ul {
 input {
     padding: 10px;
     border: none;
-    font-size: 0.7em;
+    font-size: 16px;
     border-radius: 20px;
 }
 
@@ -208,6 +209,96 @@ input {
 
 #filterMenu ul li {
     font-size: 0.7em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin: 15px 0 5px 0px
+}
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0;
+    border: none;
+}
+
+form h1 {
+    margin-top: 10px;
+}
+
+form h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+form img {
+    width: 150px;
+    height: 150px;
+    align-self: center;
+    /**/
+    background-image: url("/images/john.jpg");
+    background-size: 150px 150px;
+}
+
+form ul {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+}
+
+form ul li {
+    display: flex;
+    background-color: #F549A8;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 4px 17px 4px 4px;
+}
+
+form ul li label {
+    font-size: 16px;
+    margin: 5px 0px 5px 5px;
+}
+
+#uploadPfpButton,
+#saveProfileButton {
+    align-self: center;
+    background-color: #CCF656;
+    color: #F549A8;
+    border: none;
+    width: 70px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+#uploadPfpButton {
+    margin-top: -40px;
+    margin-left: 80px;
+}
+
+#saveProfileButton {
+    background-color: #CCF656;
+    color: #F549A8;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 10px;
+    display: flex;
+    margin: 15px auto 0 auto;
+    justify-content: center;
+    align-items: center;
 }
 
 nav {
