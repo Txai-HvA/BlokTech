@@ -11,11 +11,14 @@
             <a href="#">
               <img src={{user.image}} alt={{user.name}}>
               <div>
-                <h2>{{user.name}}</h2>
+                <h2>{{user.firstName}} {{user.lastName}}</h2>
                 <p>{{user.description}}</p>
                 <ul>
                   {% for genre in user.genres %}
                     <li>{{genre}}</li>
+                  {% endfor %}
+                  {% for artist in user.artists %}
+                    <li>{{artist}}</li>
                   {% endfor %}
                 </ul>
               </div>
@@ -37,11 +40,14 @@
             <a href="#">
               <img src={{user.image}} alt={{user.name}}>
               <div>
-                <h2>{{user.name}}</h2>
+                <h2>{{user.firstName}} {{user.lastName}}</h2>
                 <p>{{user.description}}</p>
                 <ul>
                   {% for genre in user.genres %}
                     <li>{{genre}}</li>
+                  {% endfor %}
+                  {% for artist in user.artists %}
+                    <li>{{artist}}</li>
                   {% endfor %}
                 </ul>
               </div>
@@ -52,22 +58,41 @@
       {% else %}
       <p>Can't find any users based on your filters.</p>
     {% endif %}
+    <button id="showMoreButton">Show more</button>
 
   <div id="filterMenu">
-    <h1>Filters<h1>
-    <h2>Genres<h2>
-    <input type="text" placeholder="Search for genres...">
-    <ul>
-      <li><label name="genres" value="genres">Rock<label><input type="checkbox" name="genres" value="Rock"></li>
-      <li><label name="genres" value="genres">Dance-pop<label><input type="checkbox" name="genres" value="Dance-pop"></li>
-    </ul>
-    <h2>Artists<h2>
-    <input type="text" placeholder="Search for artists...">
-    <ul>
-      <li><label name="artists" value="Rick Astley">Rick Astley<label><input type="checkbox" name="Rick Astley" value="Rick Astley"></li>
-      <li><label name="artists" value="">Nickelback<label><input type="checkbox" name="Nickelback" value="Nickelback"></li>
-    </ul>
-    <button id="filterDoneButton">DONE</button>
+    <form action="/" method="get">
+      <h1>Filters<h1>
+      <h2>Genres<h2>
+      <input type="text" placeholder="Search for genres...">
+      <ul>
+        {% for genre in genres %}
+          <li>
+            <label for={{genre}}>{{genre}}</label>
+            {% if selectedGenres.length > 0 and genre in selectedGenres%}
+                <input type="checkbox" name="genres" value={{genre}} id={{genre}} checked="checked">
+              {% else %}
+                <input type="checkbox" name="genres" value={{genre}} id={{genre}}>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      <h2>Artists<h2>
+      <input type="text" placeholder="Search for artists...">
+      <ul>
+        {% for artist in artists %}
+          <li>
+            <label for={{artist}}>{{artist}}</label>
+            {% if selectedArtists.length > 0 and artist in selectedArtists%}
+                <input type="checkbox" name="artists" value={{artist}} id={{artist}} checked="checked">
+              {% else %}
+                <input type="checkbox" name="artists" value={{artist}} id={{artist}}>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      <button id="filterDoneButton">FILTER</button>
+    </form>
   </div>
 
 {% endblock %}

@@ -1,42 +1,47 @@
 {% extends "layout.njk" %}
 {% block content %}
-<form action="/editprofile" method="post" enctype='multipart/form-data'>
+<!-- multipart/form-data is voor file uploads -->
+<form action="/editprofile" method="post" multipart/form-data>
   <h1>Edit Profile</h1>
 
   <img src="" alt="">
   <button id="uploadPfpButton">Upload image</button>
 
 
+
   <div>
-    <label name="firstName" value="firstName">First name</label>
-    <input type="text" name="firstName" placeholder="Fill in your first name..." />
+    <label for="firstName">First name</label>
+    <input id="firstName" type="text" name="firstName" value={{user.firstName}}  placeholder="Fill in your first name..."/>
 
-    <label name="lastName" value="lastName">Last name</label>
-    <input type="text" name="lastName" placeholder="Fill in your last name..." />
+    <label for="lastName">Last name</label>
+    <input id="lastName" type="text" name="lastName" value={{user.lastName}} placeholder="Fill in your last name..." />
 
-    <label name="description" value="description">Description</label>
-    <input type="text" name="description" placeholder="Fill in your description..." />
+    <label for="description">Description</label>
+    <textarea id="description" type="text" name="description" placeholder="Fill in your description...">{{user.description}}</textarea>
   </div>
 
   <h2>Genres</h2>
   <input type="text" name="genres" placeholder="Search for genres...">
   <ul>
-    {% for genre in genres %}
-      <li>{{genre}}</li>
+    {% for genre in user.genres %}
+      <li>
+        <label for={{genre}}>{{genre}}</label>
+        <input type="checkbox" name="genres" value={{genre}} id={{genre}}>
+      </li>
     {% endfor %}
-    <li><label name="genres" value="Dance-pop">Dance-pop<label><input type="checkbox" name="genres" value="Dance-pop"></li>
-    <li><label name="genres" value="Rock">Rock<label><input type="checkbox" name="genres" value="Rock"></li>
-    <li><label name="genres" value="Metal">Metal<label><input type="checkbox" name="genres" value="Metal"></li>
-    <li><label name="genres" value="Pop">Pop<label><input type="checkbox" name="genres" value="Pop"></li>
-    <li><label name="genres" value="Jazz">Jazz<label><input type="checkbox" name="genres" value="Jazz"></li>
   </ul>
 
   <h2>Artists</h2>
   <input type="text" name="artists" placeholder="Search for artists...">
   <ul>
-    <li><label name="artists" value="artists">Artist 1<label><input type="checkbox" name="artists" value="Artist 1" id=""></li>
-    <li><label name="artists" value="artists">Artist 2<label><input type="checkbox" name="artists" value="Artist 2" id=""></li>
+    {% for artist in user.artists %}
+      <li>
+        <label for={{artist}}>{{artist}}</label>
+        <input type="checkbox" name="artists" value={{artist}} id={{artist}}>
+      </li>
+    {% endfor %}
   </ul>
+
   <button id="saveProfileButton">SAVE</button>
 </form>
 {% endblock %}

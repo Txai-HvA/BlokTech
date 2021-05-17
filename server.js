@@ -1,81 +1,142 @@
 const express = require("express");
+const slug = require("slug");
 const app = express();
-const port = 3000;
-const nunjucks = require("nunjucks");
+const { MongoClient, ObjectId } = require("mongodb");
+const dotenv = require("dotenv").config();
 
-//
+// Define variables
+const port = 3000;
+let db = null;
+const genres = [
+    "Dance",
+    "Rock",
+    "Metal",
+    "Pop",
+    "Jazz",
+    "Reggae",
+    "House",
+    "Trance",
+    "EDM",
+];
+const artists = [
+    "Rick Astley",
+    "Nickelback",
+    "Metallica",
+    "deadmau5",
+    "Tiesto",
+];
+
+//Middleware
+app.use(express.static("static"));
+app.use(express.json());
+app.use(express.urlencoded()); //Als je gaat werken met file uploads, dan moet je nog iets anders gaan toevoegen
+
+// nunjucks
+const nunjucks = require("nunjucks");
 nunjucks.configure("views", {
     autoescape: true,
     express: app,
 });
 
-app.use(express.json()); //NEW
-app.use(express.urlencoded()); //NEW
+// Connect to Database
+async function connectDB() {
+    // Het is async, omdat je even moet wachten tot er iets gebeurt
 
-let data = {
-    users: [{
-            name: "John Doe",
-            image: "/images/john.jpg",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            genres: ["Metal", "Rock"],
-            suggested: true,
-        },
-        {
-            name: "Jan Jansen",
-            image: "/images/jan.jpg",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            genres: ["Dance-pop", "House", "Pop", "Trance"],
-            suggested: true,
-        },
-        {
-            name: "Jane Roe",
-            image: "/images/jane.jpg",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            genres: ["Reggae", "Rock"],
-            suggested: false,
-        },
-        {
-            name: "Richard Roe",
-            image: "/images/richard.jpg",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            genres: ["Dance-pop", "EDM"],
-            suggested: false,
-        },
-    ],
-};
+    // get URI (connection url) from .env file
+    const uri = process.env.DB_URI;
+    // make connection to database
+    const client = new MongoClient(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    try {
+        await client.connect();
+        //If connnection is succesful, search for database
+        db = await client.db(process.env.DB_NAME);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-const genres = ["Dance-pop", "Rock", "Metal", "Pop", "Jazz"];
+// Start server
 
-app.get("/", function(req, res) {
-    //Include
-    res.render("home.njk", data);
+app.listen(port, () => {
+    console.log(`Example app listening at ${port}`);
+    connectDB()
+        .then(() => {
+            console.log("Connected to MongoDB succesfully!");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 });
 
-app.get("/editprofile", function(req, res) {
-    //Include
-    res.render("editprofile.njk", [data, genres]);
+//Routes
+
+app.get("/", async(req, res) => {
+    let queryGenres = {};
+    if (req.query.genres && Array.isArray(req.query.genres)) {
+        //Als er genres zijn geselecteerd, voeg deze toe aan de query
+        queryGenres = { genres: { $in: req.query.genres } };
+    } else if (req.query.genres && !Array.isArray(req.query.genres)) {
+        //Als req.query.genres geen array is, verander in array
+        queryGenres = { genres: { $in: [req.query.genres] } };
+    }
+
+    let queryArtists = {};
+    if (req.query.artists && Array.isArray(req.query.artists)) {
+        //Als er artiesten zijn geselecteerd, voeg deze toe aan de query
+        queryArtists = { artists: { $in: req.query.artists } };
+    } else if (req.query.artists && !Array.isArray(req.query.artists)) {
+        //Als req.query.artists geen array is, verander in array
+        queryArtists = { artists: { $in: [req.query.artists] } };
+    }
+
+    const query = {...queryGenres, ...queryArtists };
+    const options = { sort: { firstName: 1 } };
+    const users = await db.collection("users").find(query, options).toArray();
+
+    //Voor het onthouden van aangevinkte genres en artists
+    const selectedGenres = req.query.genres || [];
+    const selectedArtists = req.query.artists || [];
+
+    res.render("home.njk", {
+        users,
+        genres,
+        artists,
+        selectedGenres,
+        selectedArtists,
+    });
 });
 
-app.post("/editprofile", function(req, res) {
-    console.log(req.body);
+app.get("/editprofile", async(req, res) => {
+    //Get user from database
+    const query = { _id: ObjectId("609ef6b1cdeab94a7478ecf1") };
+    const options = {};
+    let user = await db.collection("users").findOne(query, options);
 
-    let user = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        description: req.body.description,
-    };
-    data.users.push(user);
-
-    console.log(data.users);
-
-    res.render(user, { title: "Succes", genres });
+    res.render("editprofile.njk", { user, genres, artists });
 });
 
-//Middleware
-app.use(express.static("static"));
+app.post("/editprofile", async(req, res) => {
+    //Update user in database
+    const result = await db.collection("users").updateOne({ _id: ObjectId("609ef6b1cdeab94a7478ecf1") }, {
+        $set: {
+            slug: slug(req.body.firstName + "-" + req.body.lastName),
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            description: req.body.description,
+            genres: req.body.genres,
+            artists: req.body.artists,
+        },
+    });
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
+    //Get user from database
+    const query = { _id: ObjectId("609ef6b1cdeab94a7478ecf1") };
+    const options = {};
+    let user = await db.collection("users").findOne(query, options);
+
+    res.render("editprofile.njk", { title: "Succes!", user, genres, artists });
 });
 
 app.get("/users", (req, res) => {
@@ -86,11 +147,7 @@ app.get("/users/:userId/:slug", (req, res) => {
     res.send(`<h1>This wil become a profile page for ${req.params.slug}</h1>`);
 });
 
-//Middleware
+//If no route apply, show 404 page
 app.use(function(req, res) {
     res.status(404).render("404.njk");
-});
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
 });

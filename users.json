@@ -1,0 +1,41 @@
+[{
+	"slug":"john-doe",
+        "firstName": "John",
+        "lastName": "Doe",
+        "image": "/images/john.jpg",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "genres": ["Metal", "Rock"],
+        "artists": ["Metallica", "Nickelback"],
+        "suggested": true
+    },
+    {
+	"slug":"jan-jansen",
+        "firstName": "Jan",
+        "lastName": "Jansen",
+        "image": "/images/jan.jpg",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "genres": ["Dance", "House", "Pop", "Trance"],
+        "artists": ["deadmau5", "Tiesto", "Rick Astley"],
+        "suggested": true
+    },
+    {
+	"slug":"jane-roe",
+        "firstName": "Jane",
+        "lastName": "Roe",
+        "image": "/images/jane.jpg",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "genres": ["Reggae", "Rock"],
+        "artists": ["Nickelback", "Metallica"],
+        "suggested": false
+    },
+    {
+	"slug":"richard-roe",
+        "firstName": "Richard",
+        "lastName": "Roe",
+        "image": "/images/richard.jpg",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "genres": ["Dance", "EDM"],
+        "artists": ["deadmau5", "Tiesto"],
+        "suggested": false
+    }
+]

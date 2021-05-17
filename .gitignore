@@ -38,3 +38,6 @@ Thumbs.db
 
 node_modules/
 node_modules
+
+# dotenv environment variable file
+.env

@@ -1,6 +1,6 @@
 # BlokTech
 
-Dit is een matching applicatie om mensen te vinden met dezelfde muzieksmaak.
+Dit is een matching applicatie om mensen te vinden met dezelfde muzieksmaak. De feature waar ik op focus is filteren. Verder doe ik ook profiel bewerken.
 
 ## Installation
 
@@ -21,6 +21,17 @@ Gebruik ``$ npm start`` om de applicatie op te starten.
 
 ## Documentation
 [wiki](https://github.com/Txai-HvA/BlokTech/wiki)
+
+## Packages
+- Node.js
+- Nunjucks
+- Express
+- MongoDB
+- eslint
+- Prettier
+- slug
+- nodemon
+- dotenv
 
 ## License
 Deze applicatie maakt gebruik van de [MIT licence](https://github.com/Txai-HvA/BlokTech/blob/main/LICENSE).

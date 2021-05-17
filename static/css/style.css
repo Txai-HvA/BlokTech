@@ -157,6 +157,17 @@ main ul li a ul {
     overflow-x: auto;
 }
 
+#showMoreButton {
+    background-color: #CCF656;
+    color: #F549A8;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 10px;
+    display: flex;
+    margin: 15px auto 0 auto;
+}
+
 #filterMenu {
     display: none;
     /* display: flex; */
@@ -194,11 +205,17 @@ main ul li a ul {
     margin: 15px auto 0 auto;
 }
 
-input {
+input,
+textarea {
+    font-family: "Montserrat";
     padding: 10px;
     border: none;
     font-size: 16px;
     border-radius: 20px;
+}
+
+textarea {
+    resize: none;
 }
 
 #filterMenu ul {
