@@ -6,7 +6,7 @@
     {% if users.length > 0 %}
       <ul>
         {% for user in users %}
-        {% if user.suggested == true %}
+        {% if user.suggested == true and user._id != "609ef6b1cdeab94a7478ecf1" %}
           <li>
             <a href="#">
               <img src={{user.image}} alt={{user.name}}>
@@ -36,6 +36,7 @@
     {% if users.length > 0 %}
       <ul>
         {% for user in users %}
+        {% if user._id != "609ef6b1cdeab94a7478ecf1" %}
           <li>
             <a href="#">
               <img src={{user.image}} alt={{user.name}}>
@@ -53,6 +54,7 @@
               </div>
             </a>
           </li>
+          {% endif %}
         {% endfor %}
       </ul>
       {% else %}
@@ -70,21 +72,12 @@
           <option value="{{genre}}">
         {% endfor %}
       </datalist>
+      <button id="addGenreButton">Add</button>
 
       <ul>
-
-        {% if genreSearch.value == "Dance"%}
-          <li>Hallo</li>
-          {% else %}
-          <li>Nee</li>
-        {% endif %}
-
         {% for genre in genres %}
           <li>
             <label for={{genre}}>{{genre}}</label>
-
-            
-
             {% if selectedGenres.length > 0 and genre in selectedGenres%}
                 <input type="checkbox" name="genres" value="{{genre}}" id={{genre}} checked="checked">
               {% else %}

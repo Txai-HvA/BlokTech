@@ -1,11 +1,11 @@
 {% extends "layout.njk" %}
 {% block content %}
 <!-- multipart/form-data is voor file uploads -->
-<form action="/editprofile" method="post" multipart/form-data>
+<form action="/editprofile" method="post" enctype="multipart/form-data">
   <h1>Edit Profile</h1>
 
-  <img src="" alt="">
-  <button id="uploadPfpButton">Upload image</button>
+  <img src="/uploads/avatar.jpg" alt="">
+  <input type="file" name="avatar" />
 
 
 
@@ -21,23 +21,33 @@
   </div>
 
   <h2>Genres</h2>
-  <input type="text" name="genres" placeholder="Search for genres...">
+  <input type="text" list="genreSuggestions" name="genres" placeholder="Search for genres...">
+  <datalist id="genreSuggestions">
+    {% for genre in genres %}
+      <option value="{{genre}}">
+    {% endfor %}
+  </datalist>
   <ul>
     {% for genre in user.genres %}
       <li>
         <label for={{genre}}>{{genre}}</label>
-        <input type="checkbox" name="genres" value={{genre}} id={{genre}}>
+        <input type="checkbox" name="genres" checked="checked" value={{genre}} id={{genre}}>
       </li>
     {% endfor %}
   </ul>
 
   <h2>Artists</h2>
-  <input type="text" name="artists" placeholder="Search for artists...">
+  <input type="text" list="artistSuggestions" name="artists" placeholder="Search for artists...">
+  <datalist id="artistSuggestions">
+    {% for artist in artists %}
+      <option value="{{artist}}">
+    {% endfor %}
+  </datalist>
   <ul>
     {% for artist in user.artists %}
       <li>
         <label for={{artist}}>{{artist}}</label>
-        <input type="checkbox" name="artists" value={{artist}} id={{artist}}>
+        <input type="checkbox" name="artists" checked="checked" value={{artist}} id={{artist}}>
       </li>
     {% endfor %}
   </ul>

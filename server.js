@@ -1,8 +1,20 @@
 const express = require("express");
 const slug = require("slug");
+const multer = require("multer"); //Used for file uploads
 const app = express();
 const { MongoClient, ObjectId } = require("mongodb");
 const dotenv = require("dotenv").config();
+
+//Allows to customize the way multer stores the files
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "static/uploads");
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${file.fieldname}.jpg`);
+    },
+});
+const upload = multer({ storage: storage }); //Calls multer function and use dest as property
 
 // Define variables
 const port = 3000;
@@ -118,7 +130,7 @@ app.get("/editprofile", async(req, res) => {
     res.render("editprofile.njk", { user, genres, artists });
 });
 
-app.post("/editprofile", async(req, res) => {
+app.post("/editprofile", upload.single("avatar"), async(req, res) => {
     //Update user in database
     const result = await db.collection("users").updateOne({ _id: ObjectId(userId) }, {
         $set: {

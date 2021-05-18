@@ -154,9 +154,9 @@ main ul li a:active {
 
 #filterMenu {
   display: none;
-  /* display: flex; */
-  /* transform: translate(100%, 0); */
-  /* transition: 0.7s; */
+  display: flex;
+  transform: translate(100%, 0);
+  transition: 0.7s;
   flex-direction: column;
   background-color: #121212;
   position: absolute;
@@ -184,7 +184,7 @@ main ul li a:active {
 
 .showFilterMenu {
   /* Show Settings Menu */
-  /* transform: translate(0, 0) !important; */
+  transform: translate(0, 0) !important;
   display: flex !important;
 }
 
@@ -255,6 +255,7 @@ form ul li {
   padding: 4px 17px 4px 4px;
 }
 form ul li label {
+  font-weight: normal;
   font-size: 16px;
   margin: 5px 0px 5px 5px;
 }
