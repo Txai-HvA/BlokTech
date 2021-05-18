@@ -1,375 +1,351 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: #181818;
-    font-family: "Montserrat";
-    height: 100vh;
-    font-size: 16px;
-    /* Firefox Scrollbar*/
-    scrollbar-color: #7962F5 #5A4CA8;
-    overflow-x: hidden;
+  background-color: #181818;
+  font-family: "Montserrat";
+  height: 100vh;
+  font-size: 16px;
+  /* Firefox Scrollbar*/
+  scrollbar-color: #7962f5 #5a4ca8;
+  overflow-x: hidden;
 }
 
 p {
-    color: #fff;
-    margin-left: 10px;
+  color: #fff;
+  margin-left: 10px;
 }
 
 label {
-    color: #fff
+  color: #fff;
 }
 
 img {
-    background-color: red;
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
 }
 
-
 /* Scrollbar*/
-
 ::-webkit-scrollbar {
-    background-color: #5A4CA8;
+  background-color: #5a4ca8;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #7962F5;
+  background: #7962f5;
 }
 
 h1 {
-    color: #fff;
-    font-size: 1.8em;
+  color: #fff;
+  font-size: 1.8em;
 }
 
 h2 {
-    color: #fff;
-    font-size: 1.6em;
+  color: #fff;
+  font-size: 1.6em;
 }
 
 header {
-    background-color: #121212;
-    width: 100%;
-    height: 80px;
+  background-color: #121212;
+  width: 100%;
+  height: 80px;
 }
-
 header h1 {
-    margin: 0 0 10px 10px;
+  margin: 0 0 10px 10px;
 }
-
 header ul {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+header button {
+  background-color: #ccf656;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 10px 10px 0 0;
+}
+header button .material-icons {
+  color: #fff;
+  margin-top: 5px;
+  font-size: 3em;
+}
+header button:hover {
+  background-color: #a8cc46;
 }
 
 header ul li,
 main ul li a ul li,
 #filterMenu ul li {
-    white-space: nowrap;
-    background-color: #F549A8;
-    color: #fff;
-    margin-left: 10px;
-    padding: 10px;
-    max-height: 20px;
-    border-radius: 20px;
-}
-
-header button {
-    background-color: #CCF656;
-    border: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 100%;
-    position: fixed;
-    top: 0;
-    right: 0;
-    margin: 10px 10px 0 0;
-}
-
-header button .material-icons {
-    color: #fff;
-    margin-top: 5px;
-    font-size: 3em;
+  white-space: nowrap;
+  background-color: #f549a8;
+  color: #fff;
+  margin-left: 10px;
+  padding: 10px;
+  max-height: 20px;
+  border-radius: 20px;
 }
 
 main {
-    background-color: #181818;
-    /* height: 100vh; */
-    padding-bottom: 70px;
+  padding-bottom: 70px;
 }
-
 main h1 {
-    margin: 0 0 10px 10px;
+  margin: 0 0 10px 10px;
 }
-
 main ul {
-    list-style: none;
+  list-style: none;
 }
-
 main ul li a {
-    display: flex;
-    text-decoration: none;
-    color: #fff;
+  display: flex;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
 }
-
-main ul li a:hover {
-    background-color: #282828;
-}
-
-main ul li a:active {
-    background-color: #3F3F3F;
-}
-
-main ul li a {
-    padding: 10px;
-}
-
 main ul li a div {
-    margin-left: 15px;
+  margin-left: 15px;
 }
-
-main ul li a ul li {
-    margin-top: 7px;
-}
-
-main ul li a ul li:first-of-type,
-#filterMenu ul li:first-of-type {
-    margin-left: 0px;
-}
-
-main ul li a img {
-    background-color: #7962F5;
-    width: 90px;
-    height: 90px;
-    border-radius: 100%;
-}
-
 main ul li a ul {
-    display: flex;
-    width: 100%;
-    overflow-y: hidden;
-    overflow-x: auto;
+  display: flex;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+main ul li a ul li {
+  margin-top: 7px;
+}
+main ul li a ul li:first-of-type {
+  margin-left: 0px;
+}
+main ul li a img {
+  background-color: #121212;
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+}
+main ul li a:hover {
+  background-color: #5a4ca8;
+}
+main ul li a:active {
+  background-color: #7962f5;
 }
 
 #showMoreButton {
-    background-color: #CCF656;
-    color: #F549A8;
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    padding: 10px;
-    display: flex;
-    margin: 15px auto 0 auto;
+  background-color: #ccf656;
+  color: #f549a8;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 10px;
+  display: flex;
+  margin: 15px auto 0 auto;
+}
+
+#showMoreButton:hover {
+  background-color: #a8cc46;
 }
 
 #filterMenu {
-    display: none;
-    /* display: flex; */
-    /* transform: translate(100%, 0); */
-    /* transition: 0.7s; */
-    flex-direction: column;
-    background-color: #121212;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 1;
-    padding: 15px 0 0 10px;
+  display: none;
+  /* display: flex; */
+  /* transform: translate(100%, 0); */
+  /* transition: 0.7s; */
+  flex-direction: column;
+  background-color: #121212;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  padding: 15px 0 0 10px;
+}
+#filterMenu h1 {
+  margin: 0 0 0 0;
+}
+#filterMenu ul {
+  display: flex;
+  flex-direction: row;
+  margin-top: 7px;
+}
+#filterMenu ul li {
+  font-size: 0.7em;
+}
+#filterMenu ul li:first-of-type {
+  margin-left: 0px;
 }
 
 .showFilterMenu {
-    /* Show Settings Menu */
-    /* transform: translate(0, 0) !important; */
-    display: flex !important;
-}
-
-#filterMenu h1 {
-    margin: 0 0 0 0;
+  /* Show Settings Menu */
+  /* transform: translate(0, 0) !important; */
+  display: flex !important;
 }
 
 #filterDoneButton {
-    background-color: #CCF656;
-    color: #F549A8;
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    padding: 10px;
-    display: flex;
-    margin: 15px auto 0 auto;
+  background-color: #ccf656;
+  color: #f549a8;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 10px;
+  display: flex;
+  margin: 15px auto 0 auto;
+}
+
+#filterDoneButton:hover {
+  background-color: #a8cc46;
 }
 
 input,
 textarea {
-    font-family: "Montserrat";
-    padding: 10px;
-    border: none;
-    font-size: 16px;
-    border-radius: 20px;
+  font-family: "Montserrat";
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+  border-radius: 20px;
 }
 
 textarea {
-    resize: none;
-}
-
-#filterMenu ul {
-    display: flex;
-    flex-direction: row;
-    margin-top: 7px;
-}
-
-#filterMenu ul li {
-    font-size: 0.7em;
+  resize: none;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
 }
-
 form div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-
 form label {
-    margin: 15px 0 5px 0px
+  margin: 15px 0 5px 0px;
 }
-
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
-    width: 1.2em;
-    height: 1.2em;
-    margin-left: 0;
-    border: none;
-}
-
 form h1 {
-    margin-top: 10px;
+  margin-top: 10px;
 }
-
 form h2 {
-    margin-top: 10px;
-    margin-bottom: 5px;
+  margin: 10px 0 5px 0;
 }
-
 form img {
-    width: 150px;
-    height: 150px;
-    align-self: center;
-    /**/
-    background-image: url("/images/john.jpg");
-    background-size: 150px 150px;
+  width: 150px;
+  height: 150px;
+  align-self: center;
+  /**/
+  background-image: url("/images/john.jpg");
+  background-size: 150px 150px;
 }
-
 form ul {
-    display: flex;
-    width: 100%;
-    flex-flow: row wrap;
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
 }
-
 form ul li {
-    display: flex;
-    background-color: #F549A8;
-    border-radius: 20px;
-    margin-top: 10px;
-    margin-right: 10px;
-    padding: 4px 17px 4px 4px;
+  display: flex;
+  background-color: #f549a8;
+  border-radius: 20px;
+  margin: 10px 10px 0 0;
+  padding: 4px 17px 4px 4px;
+}
+form ul li label {
+  font-size: 16px;
+  margin: 5px 0px 5px 5px;
 }
 
-form ul li label {
-    font-size: 16px;
-    margin: 5px 0px 5px 5px;
+[type=checkbox]:not(:checked),
+[type=checkbox]:checked {
+  width: 1.2em;
+  height: 1.2em;
+  margin-left: 0;
+  border: none;
 }
 
 #uploadPfpButton,
 #saveProfileButton {
-    align-self: center;
-    background-color: #CCF656;
-    color: #F549A8;
-    border: none;
-    width: 70px;
-    height: 40px;
-    border-radius: 20px;
+  align-self: center;
+  background-color: #ccf656;
+  color: #f549a8;
+  border: none;
+  width: 70px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+#saveProfileButton:hover {
+  background-color: #a8cc46;
 }
 
 #uploadPfpButton {
-    margin-top: -40px;
-    margin-left: 80px;
+  margin: -40px 0 0 80px;
+}
+
+#uploadPfpButton:hover {
+  background-color: #a8cc46;
 }
 
 #saveProfileButton {
-    background-color: #CCF656;
-    color: #F549A8;
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    padding: 10px;
-    display: flex;
-    margin: 15px auto 0 auto;
-    justify-content: center;
-    align-items: center;
+  font-size: 16px;
+  padding: 10px;
+  display: flex;
+  margin: 15px auto 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 nav {
-    background-color: #282828;
-    position: fixed;
-    bottom: 0;
-    height: 60px;
-    width: 100%;
+  background-color: #282828;
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
 }
-
 nav ul {
-    display: flex;
-    list-style: none;
-    width: 100%;
-    height: 100%;
-    align-items: center;
+  display: flex;
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  align-items: center;
 }
-
 nav ul li {
-    width: 50%;
-    height: 100%;
+  width: 50%;
+  height: 100%;
 }
-
 nav a {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
 }
-
-nav a:hover {
-    background-color: #5A4CA8;
-}
-
-nav a:active {
-    background-color: #7962F5;
-}
-
 nav a .material-icons {
-    color: #fff;
-    font-size: 3em;
-    margin-top: 5px;
+  color: #fff;
+  font-size: 3em;
+  margin-top: 5px;
+}
+nav a:hover {
+  background-color: #5a4ca8;
+}
+nav a:active {
+  background-color: #7962f5;
 }
 
 @media only screen and (max-width: 720px) {
-    main ul li a div p {
-        /* Bron: https://stackoverflow.com/questions/486563/overflowhidden-dots-at-the-end */
-        text-overflow: ellipsis;
-        overflow: hidden;
-        width: 232px;
-        white-space: nowrap;
-    }
-    main ul li a ul {
-        width: 232px;
-    }
-}
+  main ul li a div p {
+    /* Bron: https://stackoverflow.com/questions/486563/overflowhidden-dots-at-the-end */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 232px;
+    white-space: nowrap;
+  }
+
+  main ul li a ul {
+    width: 232px;
+  }
+}/*# sourceMappingURL=style.css.map */

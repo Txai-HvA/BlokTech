@@ -1,0 +1,364 @@
+$primaryBtn: #ccf656;
+$primaryBtnHover: #a8cc46;
+$primaryBtnText: #f549a8;
+$background: #181818;
+$secondaryBackground: #121212;
+$nav: #282828;
+$textColor: #fff;
+$tagColor: #f549a8;
+$linkHover: #5a4ca8;
+$linkActive: #7962f5;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: $background;
+    font-family: "Montserrat";
+    height: 100vh;
+    font-size: 16px;
+    /* Firefox Scrollbar*/
+    scrollbar-color: #7962f5 #5a4ca8;
+    overflow-x: hidden;
+}
+
+p {
+    color: $textColor;
+    margin-left: 10px;
+}
+
+label {
+    color: $textColor;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+
+/* Scrollbar*/
+
+::-webkit-scrollbar {
+    background-color: #5a4ca8;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7962f5;
+}
+
+h1 {
+    color: $textColor;
+    font-size: 1.8em;
+}
+
+h2 {
+    color: $textColor;
+    font-size: 1.6em;
+}
+
+header {
+    background-color: $secondaryBackground;
+    width: 100%;
+    height: 80px;
+    h1 {
+        margin: 0 0 10px 10px;
+    }
+    ul {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    button {
+        background-color: $primaryBtn;
+        border: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin: 10px 10px 0 0;
+        .material-icons {
+            color: $textColor;
+            margin-top: 5px;
+            font-size: 3em;
+        }
+    }
+    button:hover {
+        background-color: $primaryBtnHover;
+    }
+}
+
+header ul li,
+main ul li a ul li,
+#filterMenu ul li {
+    white-space: nowrap;
+    background-color: $tagColor;
+    color: $textColor;
+    margin-left: 10px;
+    padding: 10px;
+    max-height: 20px;
+    border-radius: 20px;
+}
+
+main {
+    padding-bottom: 70px;
+    h1 {
+        margin: 0 0 10px 10px;
+    }
+    ul {
+        list-style: none;
+        li {
+            a {
+                display: flex;
+                text-decoration: none;
+                color: $textColor;
+                padding: 10px;
+                div {
+                    margin-left: 15px;
+                }
+                ul {
+                    display: flex;
+                    width: 100%;
+                    overflow-y: hidden;
+                    overflow-x: auto;
+                    li {
+                        margin-top: 7px;
+                    }
+                    li:first-of-type {
+                        margin-left: 0px;
+                    }
+                }
+                img {
+                    background-color: $secondaryBackground;
+                    width: 90px;
+                    height: 90px;
+                    border-radius: 100%;
+                }
+            }
+            a:hover {
+                background-color: $linkHover;
+            }
+            a:active {
+                background-color: $linkActive;
+            }
+        }
+    }
+}
+
+#showMoreButton {
+    background-color: $primaryBtn;
+    color: $primaryBtnText;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 10px;
+    display: flex;
+    margin: 15px auto 0 auto;
+}
+
+#showMoreButton:hover {
+    background-color: $primaryBtnHover;
+}
+
+#filterMenu {
+    display: none;
+    /* display: flex; */
+    /* transform: translate(100%, 0); */
+    /* transition: 0.7s; */
+    flex-direction: column;
+    background-color: $secondaryBackground;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    padding: 15px 0 0 10px;
+    h1 {
+        margin: 0 0 0 0;
+    }
+    ul {
+        display: flex;
+        flex-direction: row;
+        margin-top: 7px;
+        li {
+            font-size: 0.7em;
+        }
+        li:first-of-type {
+            margin-left: 0px;
+        }
+    }
+}
+
+.showFilterMenu {
+    /* Show Settings Menu */
+    /* transform: translate(0, 0) !important; */
+    display: flex !important;
+}
+
+#filterDoneButton {
+    background-color: $primaryBtn;
+    color: $primaryBtnText;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 10px;
+    display: flex;
+    margin: 15px auto 0 auto;
+}
+
+#filterDoneButton:hover {
+    background-color: $primaryBtnHover;
+}
+
+input,
+textarea {
+    font-family: "Montserrat";
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+textarea {
+    resize: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    div {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        margin: 15px 0 5px 0px;
+    }
+    h1 {
+        margin-top: 10px;
+    }
+    h2 {
+        margin: 10px 0 5px 0;
+    }
+    img {
+        width: 150px;
+        height: 150px;
+        align-self: center;
+        /**/
+        background-image: url("/images/john.jpg");
+        background-size: 150px 150px;
+    }
+    ul {
+        display: flex;
+        width: 100%;
+        flex-flow: row wrap;
+        li {
+            display: flex;
+            background-color: $tagColor;
+            border-radius: 20px;
+            margin: 10px 10px 0 0;
+            padding: 4px 17px 4px 4px;
+            label {
+                font-size: 16px;
+                margin: 5px 0px 5px 5px;
+            }
+        }
+    }
+}
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0;
+    border: none;
+}
+
+#uploadPfpButton,
+#saveProfileButton {
+    align-self: center;
+    background-color: $primaryBtn;
+    color: $primaryBtnText;
+    border: none;
+    width: 70px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+#saveProfileButton:hover {
+    background-color: $primaryBtnHover;
+}
+
+#uploadPfpButton {
+    margin: -40px 0 0 80px;
+}
+
+#uploadPfpButton:hover {
+    background-color: $primaryBtnHover;
+}
+
+#saveProfileButton {
+    font-size: 16px;
+    padding: 10px;
+    display: flex;
+    margin: 15px auto 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    background-color: $nav;
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    ul {
+        display: flex;
+        list-style: none;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        li {
+            width: 50%;
+            height: 100%;
+        }
+    }
+    a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        .material-icons {
+            color: $textColor;
+            font-size: 3em;
+            margin-top: 5px;
+        }
+    }
+    a:hover {
+        background-color: $linkHover;
+    }
+    a:active {
+        background-color: $linkActive;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    main ul li a div p {
+        /* Bron: https://stackoverflow.com/questions/486563/overflowhidden-dots-at-the-end */
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 232px;
+        white-space: nowrap;
+    }
+    main ul li a ul {
+        width: 232px;
+    }
+}

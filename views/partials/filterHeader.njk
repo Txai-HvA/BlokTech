@@ -1,9 +1,21 @@
 
 <header>
     <ul>
-        <li>Rock</li>
-        <li>Dance-pop</li>
-    </ul>
+        {% for genre in genres %}   
+            {% if selectedGenres.length > 0 and genre in selectedGenres%}
+            <li>
+                <label for={{genre}}>{{genre}}</label>
+            </li>
+            {% endif %}
+        {% endfor %}
+        {% for artist in artists %}   
+            {% if selectedArtists.length > 0 and artist in selectedArtists%}
+            <li>
+                <label for={{artist}}>{{artist}}</label>
+            </li>
+            {% endif %}
+        {% endfor %}
+      </ul>
     <button id="filterButton" alt="Filter button">
         <span class="material-icons">
             filter_alt

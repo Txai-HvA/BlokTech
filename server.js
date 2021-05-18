@@ -7,6 +7,7 @@ const dotenv = require("dotenv").config();
 // Define variables
 const port = 3000;
 let db = null;
+const userId = "609ef6b1cdeab94a7478ecf1";
 const genres = [
     "Dance",
     "Rock",
@@ -40,10 +41,8 @@ nunjucks.configure("views", {
 
 // Connect to Database
 async function connectDB() {
-    // Het is async, omdat je even moet wachten tot er iets gebeurt
-
-    // get URI (connection url) from .env file
     const uri = process.env.DB_URI;
+    console.log(uri);
     // make connection to database
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
@@ -64,7 +63,7 @@ app.listen(port, () => {
     console.log(`Example app listening at ${port}`);
     connectDB()
         .then(() => {
-            console.log("Connected to MongoDB succesfully!");
+            console.log("Connected to MongoDB successfully!");
         })
         .catch((error) => {
             console.log(error);
@@ -76,27 +75,28 @@ app.listen(port, () => {
 app.get("/", async(req, res) => {
     let queryGenres = {};
     if (req.query.genres && Array.isArray(req.query.genres)) {
-        //Als er genres zijn geselecteerd, voeg deze toe aan de query
+        //If genres are selected, at them to the query
         queryGenres = { genres: { $in: req.query.genres } };
     } else if (req.query.genres && !Array.isArray(req.query.genres)) {
-        //Als req.query.genres geen array is, verander in array
+        //If req.query.genres isn't an array, change it to an array and at them to the query
         queryGenres = { genres: { $in: [req.query.genres] } };
     }
 
     let queryArtists = {};
     if (req.query.artists && Array.isArray(req.query.artists)) {
-        //Als er artiesten zijn geselecteerd, voeg deze toe aan de query
+        //If artists are selected, at them to the query
         queryArtists = { artists: { $in: req.query.artists } };
     } else if (req.query.artists && !Array.isArray(req.query.artists)) {
-        //Als req.query.artists geen array is, verander in array
+        //If req.query.artists isn't an array, change it to an array and at them to the query
         queryArtists = { artists: { $in: [req.query.artists] } };
     }
+    console.log(queryArtists);
 
     const query = {...queryGenres, ...queryArtists };
     const options = { sort: { firstName: 1 } };
     const users = await db.collection("users").find(query, options).toArray();
 
-    //Voor het onthouden van aangevinkte genres en artists
+    //To stored checked genres & artists
     const selectedGenres = req.query.genres || [];
     const selectedArtists = req.query.artists || [];
 
@@ -111,7 +111,7 @@ app.get("/", async(req, res) => {
 
 app.get("/editprofile", async(req, res) => {
     //Get user from database
-    const query = { _id: ObjectId("609ef6b1cdeab94a7478ecf1") };
+    const query = { _id: ObjectId(userId) };
     const options = {};
     let user = await db.collection("users").findOne(query, options);
 
@@ -120,7 +120,7 @@ app.get("/editprofile", async(req, res) => {
 
 app.post("/editprofile", async(req, res) => {
     //Update user in database
-    const result = await db.collection("users").updateOne({ _id: ObjectId("609ef6b1cdeab94a7478ecf1") }, {
+    const result = await db.collection("users").updateOne({ _id: ObjectId(userId) }, {
         $set: {
             slug: slug(req.body.firstName + "-" + req.body.lastName),
             firstName: req.body.firstName,
@@ -132,7 +132,7 @@ app.post("/editprofile", async(req, res) => {
     });
 
     //Get user from database
-    const query = { _id: ObjectId("609ef6b1cdeab94a7478ecf1") };
+    const query = { _id: ObjectId(userId) };
     const options = {};
     let user = await db.collection("users").findOne(query, options);
 
@@ -147,7 +147,7 @@ app.get("/users/:userId/:slug", (req, res) => {
     res.send(`<h1>This wil become a profile page for ${req.params.slug}</h1>`);
 });
 
-//If no route apply, show 404 page
+//If no route applies, show 404 page
 app.use(function(req, res) {
     res.status(404).render("404.njk");
 });
