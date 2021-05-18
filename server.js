@@ -42,7 +42,7 @@ const artists = [
 //Middleware
 app.use(express.static("static"));
 app.use(express.json());
-app.use(express.urlencoded());
+// app.use(express.urlencoded());
 
 // nunjucks
 const nunjucks = require("nunjucks");
@@ -54,7 +54,6 @@ nunjucks.configure("views", {
 // Connect to Database
 async function connectDB() {
     const uri = process.env.DB_URI;
-    console.log(uri);
     // make connection to database
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
@@ -70,7 +69,6 @@ async function connectDB() {
 }
 
 // Start server
-
 app.listen(port, () => {
     console.log(`Example app listening at ${port}`);
     connectDB()
@@ -83,7 +81,6 @@ app.listen(port, () => {
 });
 
 //Routes
-
 app.get("/", async(req, res) => {
     let queryGenres = {};
     if (req.query.genres && Array.isArray(req.query.genres)) {

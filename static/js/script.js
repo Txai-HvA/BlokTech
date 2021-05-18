@@ -8,7 +8,7 @@ let filterDoneButton = document.querySelector("#filterDoneButton");
 
 function toggleFilterMenu() {
     filterMenu.classList.toggle("showFilterMenu");
-    filterMenu.scrollIntoView({ behavior: "smooth" }); //
+    filterMenu.scrollIntoView({ behavior: "smooth" });
 }
 
 // function addGenreToFilters(event) {
