@@ -273,6 +273,23 @@ form {
     }
 }
 
+#uploadAvatar {
+    padding: 6px;
+    cursor: pointer;
+    width: 60px;
+    background-color: $primaryBtn;
+    color: $primaryBtnText;
+    display: flex;
+    align-self: center;
+    margin: -50px 0 0 74px;
+    text-align: center;
+    border-radius: 16px;
+}
+
+#uploadAvatar:hover {
+    background-color: $primaryBtnHover;
+}
+
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
     width: 1.2em;
@@ -281,7 +298,6 @@ form {
     border: none;
 }
 
-#uploadPfpButton,
 #saveProfileButton {
     align-self: center;
     background-color: $primaryBtn;
@@ -296,12 +312,8 @@ form {
     background-color: $primaryBtnHover;
 }
 
-#uploadPfpButton {
-    margin: -40px 0 0 80px;
-}
-
-#uploadPfpButton:hover {
-    background-color: $primaryBtnHover;
+input[type="file"] {
+    display: none;
 }
 
 #saveProfileButton {

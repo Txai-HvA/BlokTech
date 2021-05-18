@@ -17,9 +17,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }); //Calls multer function and use dest as property
 
 // Define variables
-const port = 3000;
+const port = process.env.PORT;
 let db = null;
-const userId = "609ef6b1cdeab94a7478ecf1";
+const userId = process.env.USERID;
 const genres = [
     "Dance",
     "Rock",
@@ -42,7 +42,7 @@ const artists = [
 //Middleware
 app.use(express.static("static"));
 app.use(express.json());
-app.use(express.urlencoded()); //Als je gaat werken met file uploads, dan moet je nog iets anders gaan toevoegen
+app.use(express.urlencoded());
 
 // nunjucks
 const nunjucks = require("nunjucks");
@@ -107,6 +107,20 @@ app.get("/", async(req, res) => {
     const query = {...queryGenres, ...queryArtists };
     const options = { sort: { firstName: 1 } };
     const users = await db.collection("users").find(query, options).toArray();
+    const loggedInUser = await db
+        .collection("users")
+        .findOne(null, { ObjectId: userId });
+
+    //Suggested Users
+    users.forEach((user) => {
+        user.genres.forEach((userGenre) => {
+            loggedInUser.genres.forEach((loggedInUserGenre) => {
+                if (loggedInUserGenre == userGenre) {
+                    user.suggested = true;
+                }
+            });
+        });
+    });
 
     //To stored checked genres & artists
     const selectedGenres = req.query.genres || [];
@@ -132,7 +146,7 @@ app.get("/editprofile", async(req, res) => {
 
 app.post("/editprofile", upload.single("avatar"), async(req, res) => {
     //Update user in database
-    const result = await db.collection("users").updateOne({ _id: ObjectId(userId) }, {
+    await db.collection("users").updateOne({ _id: ObjectId(userId) }, {
         $set: {
             slug: slug(req.body.firstName + "-" + req.body.lastName),
             firstName: req.body.firstName,
@@ -152,10 +166,10 @@ app.post("/editprofile", upload.single("avatar"), async(req, res) => {
 });
 
 app.get("/users", (req, res) => {
-    res.send("<h1>This wil become a list of users and filters</h1>");
+    res.send("<h1>This wil become a list of users.</h1>");
 });
 
-app.get("/users/:userId/:slug", (req, res) => {
+app.get("/users/:_id/:slug", (req, res) => {
     res.send(`<h1>This wil become a profile page for ${req.params.slug}</h1>`);
 });
 

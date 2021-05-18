@@ -239,7 +239,6 @@ form img {
   height: 150px;
   align-self: center;
   /**/
-  background-image: url("/images/john.jpg");
   background-size: 150px 150px;
 }
 form ul {
@@ -260,6 +259,23 @@ form ul li label {
   margin: 5px 0px 5px 5px;
 }
 
+#uploadAvatar {
+  padding: 6px;
+  cursor: pointer;
+  width: 60px;
+  background-color: #ccf656;
+  color: #f549a8;
+  display: flex;
+  align-self: center;
+  margin: -50px 0 0 74px;
+  text-align: center;
+  border-radius: 16px;
+}
+
+#uploadAvatar:hover {
+  background-color: #a8cc46;
+}
+
 [type=checkbox]:not(:checked),
 [type=checkbox]:checked {
   width: 1.2em;
@@ -268,7 +284,6 @@ form ul li label {
   border: none;
 }
 
-#uploadPfpButton,
 #saveProfileButton {
   align-self: center;
   background-color: #ccf656;
@@ -283,12 +298,8 @@ form ul li label {
   background-color: #a8cc46;
 }
 
-#uploadPfpButton {
-  margin: -40px 0 0 80px;
-}
-
-#uploadPfpButton:hover {
-  background-color: #a8cc46;
+input[type=file] {
+  display: none;
 }
 
 #saveProfileButton {
