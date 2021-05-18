@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }); //Calls multer function and use dest as property
 
 // Define variables
-const port = process.env.PORT;
+const port = 3000;
 let db = null;
 const userId = process.env.USERID;
 const genres = [
