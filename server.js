@@ -5,7 +5,7 @@ const app = express();
 const { MongoClient, ObjectId } = require("mongodb");
 const dotenv = require("dotenv").config();
 
-// Allows to customize the way multer stores the files
+//Allows to customize the way multer stores the files
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "static/uploads");
@@ -16,10 +16,10 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage }); //Calls multer function and use dest as property
 
-// Define variables
+//Define variables
 const port = 3000;
 let db = null;
-const userId = "609ef6b1cdeab94a7478ecf1";
+const userId = process.env.USERID;
 const genres = [
     "Dance",
     "Rock",
@@ -39,7 +39,7 @@ const artists = [
     "Tiesto",
 ];
 
-// Middleware
+//Middleware
 app.use(express.static("static"));
 app.use(express.json());
 // app.use(express.urlencoded());
@@ -53,8 +53,7 @@ nunjucks.configure("views", {
 
 // Connect to Database
 async function connectDB() {
-    const uri =
-        "mongodb+srv://admin:Welkom01@matchingapp.x2vwu.mongodb.net/MatchingAppDB?retryWrites=true&w=majority";
+    const uri = process.env.DB_URI;
     // make connection to database
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
@@ -63,7 +62,7 @@ async function connectDB() {
     try {
         await client.connect();
         //If connnection is succesful, search for database
-        db = await client.db("MatchingAppDB");
+        db = await client.db(process.env.DB_NAME);
     } catch (error) {
         console.log(error);
     }
@@ -81,7 +80,7 @@ app.listen(port, () => {
         });
 });
 
-// Routes
+//Routes
 app.get("/", async(req, res) => {
     let queryGenres = {};
     if (req.query.genres && Array.isArray(req.query.genres)) {
