@@ -5,7 +5,7 @@ const app = express();
 const { MongoClient, ObjectId } = require("mongodb");
 const dotenv = require("dotenv").config();
 
-//Allows to customize the way multer stores the files
+// Allows to customize the way multer stores the files
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "static/uploads");
