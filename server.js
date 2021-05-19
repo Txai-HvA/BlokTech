@@ -44,7 +44,7 @@ app.use(express.static("static"));
 app.use(express.json());
 // app.use(express.urlencoded());
 
-// nunjucks
+// Nunjucks
 const nunjucks = require("nunjucks");
 nunjucks.configure("views", {
     autoescape: true,
