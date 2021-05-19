@@ -19,7 +19,7 @@ const upload = multer({ storage: storage }); //Calls multer function and use des
 // Define variables
 const port = 3000;
 let db = null;
-const userId = process.env.USERID;
+const userId = "609ef6b1cdeab94a7478ecf1";
 const genres = [
     "Dance",
     "Rock",
@@ -53,7 +53,8 @@ nunjucks.configure("views", {
 
 // Connect to Database
 async function connectDB() {
-    const uri = process.env.DB_URI;
+    const uri =
+        "mongodb+srv://admin:Welkom01@matchingapp.x2vwu.mongodb.net/MatchingAppDB?retryWrites=true&w=majority";
     // make connection to database
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
@@ -62,7 +63,7 @@ async function connectDB() {
     try {
         await client.connect();
         //If connnection is succesful, search for database
-        db = await client.db(process.env.DB_NAME);
+        db = await client.db("MatchingAppDB");
     } catch (error) {
         console.log(error);
     }
