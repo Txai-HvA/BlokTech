@@ -36,5 +36,9 @@ Use ``$ npm start`` to start the application.
 - nodemon
 - dotenv
 
+## Database structure
+
+![Database structuur](https://i.imgur.com/nqlxmRT.png)
+
 ## License
 This application uses the [MIT licence](https://github.com/Txai-HvA/BlokTech/blob/main/LICENSE).

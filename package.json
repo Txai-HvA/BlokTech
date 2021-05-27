@@ -1,5 +1,5 @@
 {
-    "name": "project-tech",
+    "name": "musicmeet",
     "version": "1.0.0",
     "description": "This is a matching application to find people with the same music taste.",
     "main": "server.js",

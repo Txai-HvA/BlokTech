@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
     },
 });
 const upload = multer({ storage: storage }); //Calls multer function and use dest as property
+//Source https://stackoverflow.com/questions/31592726/how-to-store-a-file-with-file-extension-with-multer
 
 //Define variables
 const port = 3000;
@@ -42,7 +43,6 @@ const artists = [
 //Middleware
 app.use(express.static("static"));
 app.use(express.json());
-// app.use(express.urlencoded());
 
 // Nunjucks
 const nunjucks = require("nunjucks");
@@ -81,8 +81,12 @@ app.listen(port, () => {
 });
 
 //Routes
+
+/* Homepage / Userlist page, which shows a list of users. 
+The Filter menu shows genres and artists.
+When a filter is applied, the page refreshes with the filter applied to the users.
+*/
 app.get("/", async(req, res) => {
-    // "run" function scope
     let queryGenres = {};
     if (req.query.genres && Array.isArray(req.query.genres)) {
         //If genres are selected, at them to the query
@@ -100,14 +104,22 @@ app.get("/", async(req, res) => {
         //If req.query.artists isn't an array, change it to an array and at them to the query
         queryArtists = { artists: { $in: [req.query.artists] } };
     }
-    console.log(queryArtists);
 
     const query = {...queryGenres, ...queryArtists };
     const options = { sort: { firstName: 1 } };
-    const users = await db.collection("users").find(query, options).toArray();
+    const users = await db
+        .collection("users")
+        .find(query, options)
+        .toArray()
+        .catch((error) => {
+            console.log(error);
+        });
     const loggedInUser = await db
         .collection("users")
-        .findOne(null, { ObjectId: userId });
+        .findOne(null, { ObjectId: userId })
+        .catch((error) => {
+            console.log(error);
+        });
 
     //Suggested Users
     users.forEach((user) => {
@@ -133,32 +145,49 @@ app.get("/", async(req, res) => {
     });
 });
 
+// Edit profile page, which the logged in user his/her info.
 app.get("/editprofile", async(req, res) => {
     //Get user from database
     const query = { _id: ObjectId(userId) };
     const options = {};
-    let user = await db.collection("users").findOne(query, options);
+    let user = await db
+        .collection("users")
+        .findOne(query, options)
+        .catch((error) => {
+            console.log(error);
+        });
 
     res.render("editprofile.njk", { user, genres, artists });
 });
 
+// Edit profile page post method, where the data from the logged in user gets updated.
 app.post("/editprofile", upload.single("avatar"), async(req, res) => {
     //Update user in database
-    await db.collection("users").updateOne({ _id: ObjectId(userId) }, {
-        $set: {
-            slug: slug(req.body.firstName + "-" + req.body.lastName),
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            description: req.body.description,
-            genres: req.body.genres,
-            artists: req.body.artists,
-        },
-    });
+    await db
+        .collection("users")
+        .updateOne({ _id: ObjectId(userId) }, {
+            $set: {
+                slug: slug(req.body.firstName + "-" + req.body.lastName),
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                description: req.body.description,
+                genres: req.body.genres,
+                artists: req.body.artists,
+            },
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 
     //Get user from database
     const query = { _id: ObjectId(userId) };
     const options = {};
-    let user = await db.collection("users").findOne(query, options);
+    let user = await db
+        .collection("users")
+        .findOne(query, options)
+        .catch((error) => {
+            console.log(error);
+        });
 
     res.render("editprofile.njk", { title: "Succes!", user, genres, artists });
 });
