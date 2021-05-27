@@ -32,8 +32,8 @@
   <ul>
     {% for genre in user.genres %}
       <li>
-        <label for={{genre}}>{{genre}}</label>
-        <input type="checkbox" name="genres" checked="checked" value={{genre}} id={{genre}}>
+        <label for="{{genre}}">{{genre}}</label>
+        <input type="checkbox" name="genres" checked="checked" value="{{genre}}" id={{genre}}>
       </li>
     {% endfor %}
   </ul>
@@ -48,8 +48,8 @@
   <ul>
     {% for artist in user.artists %}
       <li>
-        <label for={{artist}}>{{artist}}</label>
-        <input type="checkbox" name="artists" checked="checked" value={{artist}} id={{artist}}>
+        <label for="{{artist}}">{{artist}}</label>
+        <input type="checkbox" name="artists" checked="checked" value="{{artist}}" id={{artist}}>
       </li>
     {% endfor %}
   </ul>

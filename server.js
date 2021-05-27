@@ -162,6 +162,17 @@ app.get("/editprofile", async(req, res) => {
 
 // Edit profile page post method, where the data from the logged in user gets updated.
 app.post("/editprofile", upload.single("avatar"), async(req, res) => {
+    let genres = req.body.genres;
+    let artists = req.body.artists;
+
+    //Removes first element of array
+    genres.shift();
+    artists.shift();
+    //Source https://www.w3schools.com/jsref/jsref_shift.asp
+
+    req.body.genres = genres;
+    req.body.artists = artists;
+
     //Update user in database
     await db
         .collection("users")
