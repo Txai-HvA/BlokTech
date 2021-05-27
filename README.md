@@ -1,23 +1,25 @@
 # BlokTech
 
-Dit is een matching applicatie om mensen te vinden met dezelfde muzieksmaak. De feature waar ik op focus is filteren. Verder doe ik ook profiel bewerken.
+This is a matching application to find people with the same music taste. The feature that I'm focusing on is filtering. There is also a profile edit feature.
 
 ## Installation
 
-Zorg ervoor dat je Git en npm hebt geinstalleerd op je pc.
+Be sure to have Git installed on your pc.
 
 ``javascript
 $ sudo apt-get update
 $ sudo apt-get install git
 $ npm install ``
 
-En clone de repository.
+And then clone the repository and install the packages that come with it.
 
 ``javascript
-$ git clone https://github.com/Txai-HvA/BlokTech.git``
+$ git clone https://github.com/Txai-HvA/BlokTech.git
+$ npm install
+``
 
 ## Getting started
-Gebruik ``$ npm start`` om de applicatie op te starten.
+Use ``$ npm start`` to start the application.
 
 ## Documentation
 [wiki](https://github.com/Txai-HvA/BlokTech/wiki)
@@ -27,6 +29,7 @@ Gebruik ``$ npm start`` om de applicatie op te starten.
 - Nunjucks
 - Express
 - MongoDB
+- Multer
 - eslint
 - Prettier
 - slug
@@ -34,4 +37,4 @@ Gebruik ``$ npm start`` om de applicatie op te starten.
 - dotenv
 
 ## License
-Deze applicatie maakt gebruik van de [MIT licence](https://github.com/Txai-HvA/BlokTech/blob/main/LICENSE).
+This application uses the [MIT licence](https://github.com/Txai-HvA/BlokTech/blob/main/LICENSE).

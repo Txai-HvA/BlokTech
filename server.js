@@ -82,6 +82,7 @@ app.listen(port, () => {
 
 //Routes
 app.get("/", async(req, res) => {
+    // "run" function scope
     let queryGenres = {};
     if (req.query.genres && Array.isArray(req.query.genres)) {
         //If genres are selected, at them to the query
