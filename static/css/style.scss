@@ -59,6 +59,7 @@ h2 {
     font-size: 1.6em;
 }
 
+// Header in user overview
 header {
     background-color: $secondaryBackground;
     width: 100%;
@@ -66,6 +67,7 @@ header {
     h1 {
         margin: 0 0 10px 10px;
     }
+    // Shows applied filters
     ul {
         display: flex;
         align-items: center;
@@ -73,6 +75,7 @@ header {
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
+    // Shows filters
     button {
         background-color: $primaryBtn;
         border: none;
@@ -111,6 +114,7 @@ main {
     h1 {
         margin: 0 0 10px 10px;
     }
+    // User list
     ul {
         list-style: none;
         li {
@@ -122,6 +126,7 @@ main {
                 div {
                     margin-left: 15px;
                 }
+                // User genres+artists
                 ul {
                     display: flex;
                     width: 100%;
@@ -134,6 +139,7 @@ main {
                         margin-left: 0px;
                     }
                 }
+                // User profile picture
                 img {
                     background-color: $secondaryBackground;
                     width: 90px;
@@ -151,6 +157,7 @@ main {
     }
 }
 
+// Show more users button
 #showMoreButton {
     background-color: $primaryBtn;
     color: $primaryBtnText;
@@ -166,9 +173,9 @@ main {
     background-color: $primaryBtnHover;
 }
 
+// Hidden filter menu 
 #filterMenu {
     display: none;
-    display: flex;
     transform: translate(100%, 0);
     transition: 0.7s;
     flex-direction: column;
@@ -197,11 +204,13 @@ main {
 }
 
 .showFilterMenu {
-    /* Show Settings Menu */
+    /* Show Settings Menu 
+    when applied, shows filter menu coming from the right*/
     transform: translate(0, 0) !important;
     display: flex !important;
 }
 
+// Apply filter button from filter menu
 #filterDoneButton {
     background-color: $primaryBtn;
     color: $primaryBtnText;
@@ -237,6 +246,9 @@ form {
     div {
         display: flex;
         flex-direction: column;
+        div {
+            position: relative;
+        }
     }
     label {
         margin: 15px 0 5px 0px;
@@ -288,6 +300,14 @@ form {
 
 #uploadAvatar:hover {
     background-color: $primaryBtnHover;
+}
+
+#counter {
+    color: #181818;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0 10px 10px 0;
 }
 
 [type="checkbox"]:not(:checked),
@@ -364,7 +384,8 @@ nav {
 
 @media only screen and (max-width: 720px) {
     main ul li a div p {
-        /* Bron: https://stackoverflow.com/questions/486563/overflowhidden-dots-at-the-end */
+        /* Bron: Overflow:hidden dots at the end. (2009b, januari 28). Stack Overflow. 
+        https://stackoverflow.com/questions/486563/overflowhidden-dots-at-the-end*/
         text-overflow: ellipsis;
         overflow: hidden;
         width: 232px;

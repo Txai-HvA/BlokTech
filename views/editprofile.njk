@@ -13,13 +13,16 @@
 
   <div>
     <label for="firstName">First name</label>
-    <input id="firstName" type="text" name="firstName" value={{user.firstName}}  placeholder="Fill in your first name..."/>
+    <input id="firstName" type="text" name="firstName" value={{user.firstName}} minlength="3" maxlength="50" placeholder="Fill in your first name..."/>
 
     <label for="lastName">Last name</label>
-    <input id="lastName" type="text" name="lastName" value={{user.lastName}} placeholder="Fill in your last name..." />
+    <input id="lastName" type="text" name="lastName" value={{user.lastName}} minlength="3" maxlength="50" placeholder="Fill in your last name..." />
 
-    <label for="description">Description</label>
-    <textarea id="description" type="text" name="description" placeholder="Fill in your description...">{{user.description}}</textarea>
+    <div>
+      <label for="description">Description</label>
+      <textarea id="description" type="text" name="description" minlength="3" maxlength="400" placeholder="Fill in your description..."  onkeyup="countChars(this.value)">{{user.description}}</textarea>
+      <p id="counter">0/400</p>
+    </div>
   </div>
 
   <h2>Genres</h2>

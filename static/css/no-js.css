@@ -1,0 +1,9 @@
+#filterMenu {
+    display: block !important;
+    transform: translate(0, 0);
+    background-color: #181818;
+    position: relative;
+    z-index: 0;
+    padding: 15px 0 0 33px;
+    height: auto;
+}

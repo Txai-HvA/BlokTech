@@ -154,7 +154,6 @@ main ul li a:active {
 
 #filterMenu {
   display: none;
-  display: flex;
   transform: translate(100%, 0);
   transition: 0.7s;
   flex-direction: column;
@@ -183,7 +182,8 @@ main ul li a:active {
 }
 
 .showFilterMenu {
-  /* Show Settings Menu */
+  /* Show Settings Menu 
+  when applied, shows filter menu coming from the right*/
   transform: translate(0, 0) !important;
   display: flex !important;
 }
@@ -224,6 +224,9 @@ form {
 form div {
   display: flex;
   flex-direction: column;
+}
+form div div {
+  position: relative;
 }
 form label {
   margin: 15px 0 5px 0px;
@@ -274,6 +277,14 @@ form ul li label {
 
 #uploadAvatar:hover {
   background-color: #a8cc46;
+}
+
+#counter {
+  color: #181818;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0 10px 10px 0;
 }
 
 [type=checkbox]:not(:checked),
@@ -350,7 +361,8 @@ nav a:active {
 
 @media only screen and (max-width: 720px) {
   main ul li a div p {
-    /* Bron: https://stackoverflow.com/questions/486563/overflowhidden-dots-at-the-end */
+    /* Bron: Overflow:hidden dots at the end. (2009b, januari 28). Stack Overflow. 
+    https://stackoverflow.com/questions/486563/overflowhidden-dots-at-the-end*/
     text-overflow: ellipsis;
     overflow: hidden;
     width: 232px;

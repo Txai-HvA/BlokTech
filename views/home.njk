@@ -1,5 +1,52 @@
 {% extends "layout.njk" %}
 {% block content %}
+  <div id="filterMenu">
+    <form action="/" method="get">
+      <h1>Filters<h1>
+      <h2>Genres<h2>
+      <input id="genreSearch" list="genreSuggestions" type="text" placeholder="Search for genres...">
+      <datalist id="genreSuggestions">
+        {% for genre in genres %}
+          <option value="{{genre}}">
+        {% endfor %}
+      </datalist>
+
+      <ul>
+        {% for genre in genres %}
+          <li>
+            <label for={{genre}}>{{genre}}</label>
+            {% if selectedGenres.length > 0 and genre in selectedGenres%}
+                <input type="checkbox" name="genres" value="{{genre}}" id={{genre}} checked="checked">
+              {% else %}
+                <input type="checkbox" name="genres" value="{{genre}}" id={{genre}}>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+
+      <h2>Artists<h2>
+      <input id="artistSearch" list="artistSuggestions" type="text" placeholder="Search for artists...">
+      <datalist id="artistSuggestions">
+        {% for artist in artists %}
+          <option value="{{artist}}">
+        {% endfor %}
+      </datalist>
+
+      <ul>
+        {% for artist in artists %}
+          <li>
+            <label for={{artist}}>{{artist}}</label>
+            {% if selectedArtists.length > 0 and artist in selectedArtists%}
+                <input type="checkbox" name="artists" value="{{artist}}" id={{artist}} checked="checked">
+              {% else %}
+                <input type="checkbox" name="artists" value="{{artist}}" id={{artist}}>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      <button id="filterDoneButton">FILTER</button>
+    </form>
+  </div>
   {% include "partials/filterHeader.njk" %}
   <h1>Suggested Users</h1>
     <!-- conditional -->
@@ -62,51 +109,5 @@
     {% endif %}
     <button id="showMoreButton">Show more</button>
 
-  <div id="filterMenu">
-    <form action="/" method="get">
-      <h1>Filters<h1>
-      <h2>Genres<h2>
-      <input id="genreSearch" list="genreSuggestions" type="text" placeholder="Search for genres...">
-      <datalist id="genreSuggestions">
-        {% for genre in genres %}
-          <option value="{{genre}}">
-        {% endfor %}
-      </datalist>
 
-      <ul>
-        {% for genre in genres %}
-          <li>
-            <label for={{genre}}>{{genre}}</label>
-            {% if selectedGenres.length > 0 and genre in selectedGenres%}
-                <input type="checkbox" name="genres" value="{{genre}}" id={{genre}} checked="checked">
-              {% else %}
-                <input type="checkbox" name="genres" value="{{genre}}" id={{genre}}>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-
-      <h2>Artists<h2>
-      <input id="artistSearch" list="artistSuggestions" type="text" placeholder="Search for artists...">
-      <datalist id="artistSuggestions">
-        {% for artist in artists %}
-          <option value="{{artist}}">
-        {% endfor %}
-      </datalist>
-
-      <ul>
-        {% for artist in artists %}
-          <li>
-            <label for={{artist}}>{{artist}}</label>
-            {% if selectedArtists.length > 0 and artist in selectedArtists%}
-                <input type="checkbox" name="artists" value="{{artist}}" id={{artist}} checked="checked">
-              {% else %}
-                <input type="checkbox" name="artists" value="{{artist}}" id={{artist}}>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-      <button id="filterDoneButton">FILTER</button>
-    </form>
-  </div>
 {% endblock %}
