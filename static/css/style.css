@@ -137,23 +137,8 @@ main ul li a:active {
   background-color: #7962f5;
 }
 
-#showMoreButton {
-  background-color: #ccf656;
-  color: #f549a8;
-  border: none;
-  border-radius: 20px;
-  font-size: 16px;
-  padding: 10px;
-  display: flex;
-  margin: 15px auto 0 auto;
-}
-
-#showMoreButton:hover {
-  background-color: #a8cc46;
-}
-
 #filterMenu {
-  display: none;
+  display: flex;
   transform: translate(100%, 0);
   transition: 0.7s;
   flex-direction: column;
@@ -184,8 +169,7 @@ main ul li a:active {
 .showFilterMenu {
   /* Show Settings Menu 
   when applied, shows filter menu coming from the right*/
-  transform: translate(0, 0) !important;
-  display: flex !important;
+  transform: translate(0, 0);
 }
 
 #filterDoneButton {
@@ -277,6 +261,10 @@ form ul li label {
 
 #uploadAvatar:hover {
   background-color: #a8cc46;
+}
+
+#emailValidator {
+  color: #f44a4a;
 }
 
 #counter {

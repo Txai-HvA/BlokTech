@@ -1,71 +1,47 @@
-{% extends "layout.njk" %}
+{% extends 'layout.njk' %}
 {% block content %}
-  <div id="filterMenu">
-    <form action="/" method="get">
+  <div id='filterMenu'>
+    <form action='/' method='get'>
       <h1>Filters<h1>
-      <h2>Genres<h2>
-      <input id="genreSearch" list="genreSuggestions" type="text" placeholder="Search for genres...">
-      <datalist id="genreSuggestions">
-        {% for genre in genres %}
-          <option value="{{genre}}">
+      <h2>Genres & Artists<h2>
+      <input id='tagSearch' list='tagSuggestions' type='text' placeholder='Search for genres & artists...'>
+      <datalist id='tagSuggestions'>
+        {% for tag in tags %}
+          <option value='{{tag}}'>
         {% endfor %}
       </datalist>
 
       <ul>
-        {% for genre in genres %}
+        {% for tag in tags %}
           <li>
-            <label for={{genre}}>{{genre}}</label>
-            {% if selectedGenres.length > 0 and genre in selectedGenres%}
-                <input type="checkbox" name="genres" value="{{genre}}" id={{genre}} checked="checked">
+            <label for={{tag}}>{{tag}}</label>
+            {% if selectedTags.length > 0 and tag in selectedTags%}
+                <input type='checkbox' name='tags' value='{{tag}}' id={{tag}} checked='checked'>
               {% else %}
-                <input type="checkbox" name="genres" value="{{genre}}" id={{genre}}>
+                <input type='checkbox' name='tags' value='{{tag}}' id={{tag}}>
             {% endif %}
           </li>
         {% endfor %}
       </ul>
-
-      <h2>Artists<h2>
-      <input id="artistSearch" list="artistSuggestions" type="text" placeholder="Search for artists...">
-      <datalist id="artistSuggestions">
-        {% for artist in artists %}
-          <option value="{{artist}}">
-        {% endfor %}
-      </datalist>
-
-      <ul>
-        {% for artist in artists %}
-          <li>
-            <label for={{artist}}>{{artist}}</label>
-            {% if selectedArtists.length > 0 and artist in selectedArtists%}
-                <input type="checkbox" name="artists" value="{{artist}}" id={{artist}} checked="checked">
-              {% else %}
-                <input type="checkbox" name="artists" value="{{artist}}" id={{artist}}>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-      <button id="filterDoneButton">FILTER</button>
+      <button id='filterDoneButton'>FILTER</button>
     </form>
   </div>
-  {% include "partials/filterHeader.njk" %}
-  <h1>Suggested Users</h1>
+  {% include 'partials/filterHeader.njk' %}
     <!-- conditional -->
-    {% if users.length > 0 %}
+    {% if users.length > 0 %} 
+    <h1>Suggested Users</h1>
       <ul>
         {% for user in users %}
-        {% if user.suggested == true and user._id != "609ef6b1cdeab94a7478ecf1" %}
+        {% if user.suggested == true and user._id != userId %}
           <li>
-            <a href="#">
+            <a href='#'>
               <img src={{user.image}} alt={{user.name}}>
               <div>
                 <h2>{{user.firstName}} {{user.lastName}}</h2>
                 <p>{{user.description}}</p>
                 <ul>
-                  {% for genre in user.genres %}
-                    <li>{{genre}}</li>
-                  {% endfor %}
-                  {% for artist in user.artists %}
-                    <li>{{artist}}</li>
+                  {% for tag in user.tags %}
+                    <li>{{tag}}</li>
                   {% endfor %}
                 </ul>
               </div>
@@ -83,19 +59,16 @@
     {% if users.length > 0 %}
       <ul>
         {% for user in users %}
-        {% if user._id != "609ef6b1cdeab94a7478ecf1" %}
+        {% if user._id != userId %}
           <li>
-            <a href="#">
+            <a href='#'>
               <img src={{user.image}} alt={{user.name}}>
               <div>
                 <h2>{{user.firstName}} {{user.lastName}}</h2>
                 <p>{{user.description}}</p>
                 <ul>
-                  {% for genre in user.genres %}
-                    <li>{{genre}}</li>
-                  {% endfor %}
-                  {% for artist in user.artists %}
-                    <li>{{artist}}</li>
+                  {% for tag in user.tags %}
+                    <li>{{tag}}</li>
                   {% endfor %}
                 </ul>
               </div>
@@ -107,7 +80,6 @@
       {% else %}
       <p>Can't find any users based on your filters.</p>
     {% endif %}
-    <button id="showMoreButton">Show more</button>
 
-
+<script src='js/home_script.js'></script>
 {% endblock %}

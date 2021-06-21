@@ -8,6 +8,9 @@ $textColor: #fff;
 $tagColor: #f549a8;
 $linkHover: #5a4ca8;
 $linkActive: #7962f5;
+$error: #f44a4a;
+$secondaryText: #181818;
+
 * {
     margin: 0;
     padding: 0;
@@ -157,25 +160,9 @@ main {
     }
 }
 
-// Show more users button
-#showMoreButton {
-    background-color: $primaryBtn;
-    color: $primaryBtnText;
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    padding: 10px;
-    display: flex;
-    margin: 15px auto 0 auto;
-}
-
-#showMoreButton:hover {
-    background-color: $primaryBtnHover;
-}
-
 // Hidden filter menu 
 #filterMenu {
-    display: none;
+    display: flex;
     transform: translate(100%, 0);
     transition: 0.7s;
     flex-direction: column;
@@ -206,8 +193,7 @@ main {
 .showFilterMenu {
     /* Show Settings Menu 
     when applied, shows filter menu coming from the right*/
-    transform: translate(0, 0) !important;
-    display: flex !important;
+    transform: translate(0, 0);
 }
 
 // Apply filter button from filter menu
@@ -302,8 +288,12 @@ form {
     background-color: $primaryBtnHover;
 }
 
+#emailValidator { 
+    color: $error;
+}
+
 #counter {
-    color: #181818;
+    color: $secondaryText;
     position: absolute;
     right: 0;
     bottom: 0;

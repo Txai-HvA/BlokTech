@@ -10,5 +10,8 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "indent": ["error", 2],
+    "quotes": ["error", "single"]
+  }
 }
