@@ -9,7 +9,9 @@
         "serve": "nodemon server.js",
         "build": "nodemon server.js",
         "lint": "eslint .",
-        "lint:fix": "eslint . --fix"
+        "lint:fix": "eslint . --fix",
+        "build-scss": "node-sass app/scss/app.scss dist/css/app.css --output-style expanded",
+        "watch-scss": "node-sass --w app/scss --o dist/css --output-style expanded"
     },
     "repository": {
         "type": "git",

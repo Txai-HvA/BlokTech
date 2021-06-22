@@ -2,49 +2,49 @@
 {% block content %}
 <!-- multipart/form-data is voor file uploads -->
 <form action='/editprofile' method='post' enctype='multipart/form-data'>
-  <h1>Edit Profile</h1>
+    <h1>Edit Profile</h1>
 
-  <div>
-    <img src='/uploads/avatar.jpg' alt=''>
-    <label id='uploadAvatar' >Upload Avatar<input type='file' name='avatar' /></label>
-  </div>
+    <div>
+        <img src='/uploads/avatar.jpg' alt=''>
+        <label id='uploadAvatar' >Upload Avatar<input type='file' name='avatar' /></label>
+    </div>
 
-  <div>
-    <label for='firstName'>First name</label>
-    <input id='firstName' type='text' name='firstName' value={{user.firstName}} minlength='3' maxlength='50' placeholder='Fill in your first name...' required/>
+    <div>
+        <label for='firstName'>First name</label>
+        <input id='firstName' type='text' name='firstName' value={{user.firstName}} minlength='3' maxlength='50' placeholder='Fill in your first name...' required/>
 
-    <label for='lastName'>Last name</label>
-    <input id='lastName' type='text' name='lastName' value={{user.lastName}} minlength='3' maxlength='50' placeholder='Fill in your last name...' />
+        <label for='lastName'>Last name</label>
+        <input id='lastName' type='text' name='lastName' value={{user.lastName}} minlength='3' maxlength='50' placeholder='Fill in your last name...' />
     
-    <div>
-      <label for='email'>Email</label>
-      <input id='email' type='text' name='email' value={{user.email}} minlength='6' maxlength='254' placeholder='Fill in your email...' required/>
-      <p id='emailValidator'></p>
+        <div>
+            <label for='email'>Email</label>
+            <input id='email' type='text' name='email' value={{user.email}} minlength='6' maxlength='254' placeholder='Fill in your email...' required/>
+            <p id='emailValidator'></p>
+        </div>
+        <div>
+            <label for='description'>Description</label>
+            <textarea id='description' type='text' name='description' minlength='1' maxlength='400' placeholder='Fill in your description...' required>{{user.description}}</textarea>
+            <p id='counter'>0/400</p>
+        </div>
     </div>
-    <div>
-      <label for='description'>Description</label>
-      <textarea id='description' type='text' name='description' minlength='1' maxlength='400' placeholder='Fill in your description...' required>{{user.description}}</textarea>
-      <p id='counter'>0/400</p>
-    </div>
-  </div>
 
-  <h2>Genres & Artists</h2>
-  <input type='text' list='tagSuggestions' name='tags' placeholder='Search for genres & artists...'>
-  <datalist id='tagSuggestions'>
-    {% for tag in tags %}
-      <option value='{{tag}}'>
-    {% endfor %}
-  </datalist>
-  <ul>
-    {% for tag in user.tags %}
-      <li>
-        <label for='{{tag}}'>{{tag}}</label>
-        <input type='checkbox' name='tags' checked='checked' value='{{tag}}' id={{tag}}>
-      </li>
-    {% endfor %}
-  </ul>
+    <h2>Genres & Artists</h2>
+    <input type='text' list='tagSuggestions' name='tags' placeholder='Search for genres & artists...'>
+    <datalist id='tagSuggestions'>
+        {% for tag in tags %}
+            <option value='{{tag}}'>
+        {% endfor %}
+    </datalist>
+    <ul>
+        {% for tag in user.tags %}
+            <li>
+                <label for='{{tag}}'>{{tag}}</label>
+                <input type='checkbox' name='tags' checked='checked' value='{{tag}}' id='{{tag}}'>
+            </li>
+        {% endfor %}
+    </ul>
 
-  <button id='saveProfileButton'>SAVE</button>
+    <button id='saveProfileButton'>SAVE</button>
 </form>
 <script src='js/editprofile_script.js'></script>
 {% endblock %}
