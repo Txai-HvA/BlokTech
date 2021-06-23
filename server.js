@@ -68,7 +68,7 @@ async function connectDB() {
 
 // Start server
 app.listen(process.env.PORT || 3000, () => {
-    console.log(`Example app listening at ${port}`)
+    console.log(`Example app listening at ${process.env.PORT || 3000}`)
     connectDB()
         .then(() => {
             console.log('Connected to MongoDB successfully!')
