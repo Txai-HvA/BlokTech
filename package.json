@@ -19,6 +19,7 @@
         "matching-app",
         "music",
         "nunjucks",
+        "express",
         "mongodb"
     ],
     "author": "Txai Pereira de Lacerda",
