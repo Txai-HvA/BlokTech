@@ -19,7 +19,7 @@ const upload = multer({ storage: storage }) //Calls multer function and use dest
 //Source https://stackoverflow.com/questions/31592726/how-to-store-a-file-with-file-extension-with-multer
 
 //Define variables
-const port = process.env.PORT | 3000
+const port = process.env.PORT | 40956
 let db = null
 const userId = process.env.USERID
 const tags = [
