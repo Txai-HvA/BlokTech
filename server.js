@@ -19,7 +19,6 @@ const upload = multer({ storage: storage }) //Calls multer function and use dest
 //Source https://stackoverflow.com/questions/31592726/how-to-store-a-file-with-file-extension-with-multer
 
 //Define variables
-const port = process.env.PORT | 3000
 let db = null
 const userId = process.env.USERID
 const tags = [
@@ -68,7 +67,7 @@ async function connectDB() {
 }
 
 // Start server
-app.listen(port, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Example app listening at ${port}`)
     connectDB()
         .then(() => {
