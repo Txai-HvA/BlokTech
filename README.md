@@ -42,5 +42,13 @@ Use ``$ npm start`` to start the application.
 
 ![Database structuur](https://i.imgur.com/npHNFsO.png)
 
+## CSS / SASS
+
+This app uses sass to generate css files. If you don't have the [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass) extension installed, you can run this command instead:
+
+```javascript
+npm run compile-sass
+```
+
 ## License
 This application uses the [MIT licence](https://github.com/Txai-HvA/BlokTech/blob/main/LICENSE).
