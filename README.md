@@ -1,5 +1,7 @@
 # BlokTech
 
+![MusicMeet logo](https://i.imgur.com/q6k7ypo.png)
+
 This is a matching application to find people with the same music taste. The feature that I'm focusing on is filtering. There is also a profile edit feature.
 
 ## Installation
@@ -38,7 +40,7 @@ Use ``$ npm start`` to start the application.
 
 ## Database structure
 
-![Database structuur](https://i.imgur.com/nqlxmRT.png)
+![Database structuur](https://i.imgur.com/npHNFsO.png)
 
 ## License
 This application uses the [MIT licence](https://github.com/Txai-HvA/BlokTech/blob/main/LICENSE).
