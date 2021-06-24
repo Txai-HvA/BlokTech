@@ -8,8 +8,8 @@
         "test": "nodemon server.js",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "build-scss": "node-sass app/scss/app.scss dist/css/app.css --output-style expanded",
-        "watch-scss": "node-sass --w app/scss --o dist/css --output-style expanded"
+        "watch-sass": "node-sass static/css/style.scss static/css/style.css --watch",
+        "compile-sass": "node-sass static/css/style.scss static/css/style.css"
     },
     "repository": {
         "type": "git",
@@ -47,5 +47,5 @@
     "engines": {
         "node": "14.16.1",
         "npm": "7.9.0"
-  }
+    }
 }
