@@ -111,18 +111,16 @@ app.get('/', async (req, res) => {
             console.log(error)
         })
 
-    if (queryTags.length > 1) {
-        //Suggested Users
-        users.forEach((user) => {
-            user.tags.forEach((userTag) => {
-                loggedInUser.tags.forEach((loggedInUserTag) => {
-                    if (loggedInUserTag == userTag) {
-                        user.suggested = true
-                    }
-                })
+    //Suggested Users
+    users.forEach((user) => {
+        user.tags.forEach((userTag) => {
+            loggedInUser.tags.forEach((loggedInUserTag) => {
+                if (loggedInUserTag == userTag) {
+                    user.suggested = true
+                }
             })
         })
-    }
+    })
 
     //To stored checked genres & artists
     const selectedTags = req.query.tags || []
